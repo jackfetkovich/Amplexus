@@ -1,0 +1,3 @@
+/home/jfetko/amplexus/cmake-build-debug/CMakeFiles/amplexus.dir
+/home/jfetko/amplexus/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/jfetko/amplexus/cmake-build-debug/CMakeFiles/rebuild_cache.dir
