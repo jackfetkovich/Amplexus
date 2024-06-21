@@ -3,4 +3,9 @@ project(amplexus C)
 
 set(CMAKE_C_STANDARD 17)
 
-add_executable(amplexus main.c)
+add_executable(amplexus main.c
+        AmplexusTypes.h
+        Amplexus.h
+        Amplexus.c
+        ChildMoveList.c
+        ChildMoveList.h)

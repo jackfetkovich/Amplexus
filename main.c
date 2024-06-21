@@ -1,9 +1,13 @@
 #include <stdio.h>
 #include <inttypes.h>
+#include "AmplexusTypes.h"
 
 int main() {
-    uint64_t my_int = 7;
-    printf("%d", my_int);
+//    Position p = {
+//            (uint64_t) 1 >> 4,
+//    }
+    uint64_t mike = (uint64_t) 1 << 5;
+    printf("%d", mike);
 
     return 0;
 }
