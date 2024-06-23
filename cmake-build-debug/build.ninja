@@ -73,6 +73,12 @@ build CMakeFiles/amplexus.dir/Tests.c.o: C_COMPILER__amplexus_unscanned_Debug /h
   OBJECT_DIR = CMakeFiles/amplexus.dir
   OBJECT_FILE_DIR = CMakeFiles/amplexus.dir
 
+build CMakeFiles/amplexus.dir/Utilities.c.o: C_COMPILER__amplexus_unscanned_Debug /home/jfetko/amplexus/Utilities.c || cmake_object_order_depends_target_amplexus
+  DEP_FILE = CMakeFiles/amplexus.dir/Utilities.c.o.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/amplexus.dir
+  OBJECT_FILE_DIR = CMakeFiles/amplexus.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target amplexus
@@ -81,7 +87,7 @@ build CMakeFiles/amplexus.dir/Tests.c.o: C_COMPILER__amplexus_unscanned_Debug /h
 #############################################
 # Link the executable amplexus
 
-build amplexus: C_EXECUTABLE_LINKER__amplexus_Debug CMakeFiles/amplexus.dir/main.c.o CMakeFiles/amplexus.dir/Amplexus.c.o CMakeFiles/amplexus.dir/DataStructures.c.o CMakeFiles/amplexus.dir/Tests.c.o
+build amplexus: C_EXECUTABLE_LINKER__amplexus_Debug CMakeFiles/amplexus.dir/main.c.o CMakeFiles/amplexus.dir/Amplexus.c.o CMakeFiles/amplexus.dir/DataStructures.c.o CMakeFiles/amplexus.dir/Tests.c.o CMakeFiles/amplexus.dir/Utilities.c.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/amplexus.dir
   POST_BUILD = :

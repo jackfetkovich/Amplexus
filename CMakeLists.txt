@@ -9,4 +9,6 @@ add_executable(amplexus main.c
         Amplexus.c
         DataStructures.c
         DataStructures.h
-        Tests.c)
+        Tests.c
+        Utilities.c
+        Utilities.h)

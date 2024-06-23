@@ -8,11 +8,11 @@
 #include <inttypes.h>
 
 #define OCCUPIED_SQUARES(pos) \
-        pos.wk & pos.wr & pos.wn & \
-        pos.wb & pos.wq & pos.wp & \
-        pos.bk & pos.br & pos.bn & \
-        pos.bb & pos.bb & pos.bq & \
-        pos.bp
+        (pos.wk | pos.wr | pos.wn | \
+        pos.wb | pos.wq | pos.wp | \
+        pos.bk | pos.br | pos.bn | \
+        pos.bb | pos.bb | pos.bq | \
+        pos.bp)
 
 // Defines a position
 typedef struct {
@@ -31,6 +31,7 @@ typedef struct {
     uint64_t bp;
 
     int num_moves;
+    int white_turn;
     int wcastled;
     int wk_moved;
     int wr1_moved;

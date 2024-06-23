@@ -27,6 +27,7 @@ typedef struct {
 typedef struct tree_node_struct {
     struct tree_node_struct *parent;
     Move move;
+    Position position;
     int num_children;
     MoveNodeList *child_moves;
     double eval;
@@ -37,8 +38,6 @@ typedef struct tree_struct {
 } Tree;
 
 void add_move(TreeNode *parent, Move move);
-
-
 
 #define AMPLEXUS_LINKEDLIST_H
 
