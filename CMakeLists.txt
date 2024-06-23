@@ -7,5 +7,6 @@ add_executable(amplexus main.c
         AmplexusTypes.h
         Amplexus.h
         Amplexus.c
-        ChildMoveList.c
-        ChildMoveList.h)
+        DataStructures.c
+        DataStructures.h
+        Tests.c)
