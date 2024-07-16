@@ -5,6 +5,7 @@
 #include "DataStructures.h"
 #include "Utilities.h"
 
+
 int main() {
 //    Tree tree;
 //    TreeNode root;
@@ -71,10 +72,10 @@ int main() {
 
 //************************************************
 
-uint64_t rev = reverse_bits((uint64_t) 2);
-printf("%lu", rev);
-
-
-
+//uint64_t rev = reverse_bits((uint64_t) 2);
+//printf("%lu", rev);
+    Move m;
+    m = generate_move_string(1, 0,0,0,0,0,0,0,0);
+    printf("%u", m);
 
 }

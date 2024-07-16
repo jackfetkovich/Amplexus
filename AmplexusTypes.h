@@ -14,6 +14,13 @@
         pos.bb | pos.bb | pos.bq | \
         pos.bp)
 
+#define PAWN 1
+#define KNIGHT 3
+#define BISHOP 4
+#define ROOK 5
+#define QUEEN 9
+#define KING 10
+
 // Defines a position
 typedef struct {
     uint64_t wk; // white king
@@ -48,7 +55,7 @@ typedef struct {
 
 
 // Move
-/*
+/* 4 Bytes
  * Color - 1 bit
  * Starting square - 6 bits
  * End square - 6 bits
