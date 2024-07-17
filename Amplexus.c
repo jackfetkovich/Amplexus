@@ -26,26 +26,44 @@ void generate_moves(Position pos, TreeNode root){
 
     // Pawn moves
 
-    // Rook moves
-    int rook_mask = (uint64_t) 1;
-    while(rook_mask){
-        if(rook_mask & r){
-            uint64_t og_rook = rook_mask; // starting position of rook
-            uint64_t sliding_rook = rook_mask; // Isolate found rook on bitboard
-            // Up
-            while(sliding_rook <<=8){
-                if(!(sliding_rook & full_board)){ // if new square is empty
-                    Move new_move;
-                    new_move = generate_move_string(pos.white_turn, og_rook, sliding_rook, ROOK, 0, 0, 0, 0, 0);
-                    add_move(&root, new_move);
-                } else if(sliding_rook & op_pieces) {// capturing an enemy piece
-                    Move new_move;
-                    new_move = generate_move_string(pos.white_turn, og_rook, sliding_rook, ROOK, 1, 0, 0, 0, 0);
-                    add_move(&root, new_move);
-                } else break; // Can't land on my own piece
-            }
+    // Moves for rook, queen, and bishop
+    uint64_t rqb = r | q | b;
+    int mask = (uint64_t) 1;
+    while(mask){
+        if(mask & rqb){
+            int piece_type;
+            if(mask & q) piece_type = QUEEN;
+            if(mask & r) piece_type = ROOK;
+            if(mask & b) piece_type = BISHOP;
 
-            // Down
+            uint64_t og_piece = mask; // starting position of piece
+            uint64_t moving_piece;
+
+            // Up and down
+            for(int i = 0; i < 2; i++) {
+                moving_piece = mask; // Isolate found piece on bitboard
+                while ((piece_type == QUEEN || piece_type == ROOK) && moving_piece) {
+                    switch(i){
+                        case 0:
+                            moving_piece <<=8; // moves going up
+                            break;
+                        case 1:
+                            moving_piece >>=8; // moves going down
+                            break;
+                    }
+                    if (!(moving_piece & full_board)) { // if new square is empty
+                        Move new_move;
+                        new_move = generate_move_string(pos.white_turn, og_piece, moving_piece, piece_type, 0, 0, 0, 0,
+                                                        0);
+                        add_move(&root, new_move);
+                    } else if (moving_piece & op_pieces) {// capturing an enemy piece
+                        Move new_move;
+                        new_move = generate_move_string(pos.white_turn, og_piece, moving_piece, piece_type, 1, 0, 0, 0,
+                                                        0);
+                        add_move(&root, new_move);
+                    } else break; // Can't land on my own piece
+                }
+            }
 
             // Left
 
@@ -53,16 +71,9 @@ void generate_moves(Position pos, TreeNode root){
 
         }
 
-
-
-
-
-        rook_mask <<= 1;
+        mask <<= 1;
     }
 
-
-
-    // Knight moves
 
     // Bishop moves
 
