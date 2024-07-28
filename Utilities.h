@@ -11,6 +11,7 @@ uint64_t reverse_bits(uint64_t n);
 Move generate_move_string(int, uint64_t, uint64_t, int, int, int, int , int, int);
 
 
+
 #define AMPLEXUS_UTILITIES_H
 
 #endif //AMPLEXUS_UTILITIES_H

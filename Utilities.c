@@ -33,3 +33,5 @@ Move generate_move_string(int white, uint64_t start, uint64_t end, int piece, in
             (((uint32_t)promo) << 13) | (((uint32_t)k_castle) << 10) | (((uint32_t)q_castle) << 9);
     return move;
 }
+
+

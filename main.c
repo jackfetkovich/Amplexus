@@ -3,7 +3,7 @@
 #include <inttypes.h>
 #include "AmplexusTypes.h"
 #include "DataStructures.h"
-#include "Utilities.h"
+#include "DevUtilities.h"
 
 
 int main() {
@@ -74,8 +74,12 @@ int main() {
 
 //uint64_t rev = reverse_bits((uint64_t) 2);
 //printf("%lu", rev);
-    Move m;
-    m = generate_move_string(1, 0,0,0,0,0,0,0,0);
-    printf("%u", m);
+
+//    char fen_str[] = "1r2n2q/3k1b2/3p2p1/1pp2p2/8/PP1PR1P1/1B3K2/R1QN4 b - - 0 1";
+    char fen_str[] = "7k/2n2n2/8/8/8/8/PPPPPPPP/K7 w - - 0 1";
+    Position * pos = position_from_fen(fen_str);
+    Position repos = *pos;
+    printf("we did it");
+
 
 }

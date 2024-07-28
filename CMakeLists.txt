@@ -5,10 +5,12 @@ set(CMAKE_C_STANDARD 17)
 
 add_executable(amplexus main.c
         AmplexusTypes.h
-        Amplexus.h
-        Amplexus.c
+        MoveGen.h
+        MoveGen.c
         DataStructures.c
         DataStructures.h
         Tests.c
         Utilities.c
-        Utilities.h)
+        Utilities.h
+        DevUtilities.c
+        DevUtilities.h)

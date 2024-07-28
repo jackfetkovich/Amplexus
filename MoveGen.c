@@ -1,7 +1,7 @@
 //
 // Created by jfetko on 6/20/24.
 //
-#include "Amplexus.h"
+#include "MoveGen.h"
 
 void generate_moves(Position pos, TreeNode root){
 
