@@ -25,10 +25,12 @@ Position* position_from_fen(char* fen){
     char* rank;
     char* delim = " /";
     int square = 63;
+    int read_fields_after_pieces = 0;
 
     strcpy(fen_mut, fen);
     rank = strtok(fen_mut, delim);
     while(rank != NULL){
+        // Reading piece positions
         if(square >= 0){
             reverse_str(rank);
             int len = (int)strlen(rank);
@@ -85,9 +87,103 @@ Position* position_from_fen(char* fen){
                     *bb |= ((uint64_t)1) << square;
                     square--;
                 }
-
             }
+        // Reading information after piece positions
+        } else if(read_fields_after_pieces <= 4){
+            switch (read_fields_after_pieces) {
+
+                // White or black turn
+                case 0:
+                    if(rank[0] == 'w') {
+                        pos->white_turn = 1;
+                    } else {
+                        pos->white_turn = 0;
+                    }
+                    break;
+
+                // Castling rights
+                case 1: {
+                    int len = (int)strlen(rank);
+                    for(int i = 0; i < len; i++){
+                        char character = rank[i];
+                        switch (character) {
+                            case '-':
+                                pos->w_k_castle_allowed = 0;
+                                pos->w_q_castle_allowed = 0;
+                                pos->b_k_castle_allowed = 0;
+                                pos->b_q_castle_allowed = 0;
+                                break;
+                            case 'K':
+                                pos->w_k_castle_allowed = 1;
+                                break;
+                            case 'Q':
+                                pos->w_q_castle_allowed = 1;
+                                break;
+                            case 'k':
+                                pos->b_k_castle_allowed = 1;
+                                break;
+                            case 'q':
+                                pos->b_q_castle_allowed = 1;
+                                break;
+                            default:
+                                printf("CASTLING RIGHTS FEN ISSUE!!!\n");
+                        }
+                    }
+                    break;
+                }
+
+                // En passant target
+                case 2: {
+                    int target_square = 0;
+                    int len = (int) strlen(rank);
+                    for(int i = 0; i < len; i++){
+                        char character = rank[i];
+                        switch (character) {
+                            case '-':
+                                break;
+                            default: {
+                                if(character >= 'a' && character <= 'h'){
+                                    target_square += character - 'a';
+                                } else if(character >= '1' && character <= '8'){
+                                    target_square += 8 * (character - '1');
+                                }
+                            }
+                        }
+                    }
+                    if(target_square == 0){
+                        pos->en_passant_target = -1;
+                    } else {
+                        pos->en_passant_target = target_square;
+                    }
+                }
+
+                // Half move clock
+                case 3: {
+                    int total = 0;
+                    int len = (int) strlen(rank);
+                    for(int i = 0; i < len; i++){
+                        char character = rank[i];
+                        total *= 10;
+                        total += character - '0';
+                    }
+                    pos->half_moves = total;
+                }
+
+                // Full move clock
+                case 4: {
+                    int total = 0;
+                    int len = (int) strlen(rank);
+                    for(int i = 0; i < len; i++){
+                        char character = rank[i];
+                        total *= 10;
+                        total += character - '0';
+                    }
+                    pos->full_moves = total;
+                }
+            }
+            read_fields_after_pieces++;
         }
+
         rank = strtok(NULL, delim);
     }
     return pos;

@@ -76,10 +76,10 @@ int main() {
 //printf("%lu", rev);
 
 //    char fen_str[] = "1r2n2q/3k1b2/3p2p1/1pp2p2/8/PP1PR1P1/1B3K2/R1QN4 b - - 0 1";
-    char fen_str[] = "7k/2n2n2/8/8/8/8/PPPPPPPP/K7 w - - 0 1";
+    char fen_str[] = "r1k1b2r/1p4q1/2pp4/4pP2/2PPP1P1/PP6/8/R1Q1K2R w KQkq e6 0 1";
     Position * pos = position_from_fen(fen_str);
     Position repos = *pos;
-    printf("we did it");
+
 
 
 }

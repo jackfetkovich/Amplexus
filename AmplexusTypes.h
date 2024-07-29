@@ -34,23 +34,17 @@ typedef struct {
     uint64_t br; // black rook
     uint64_t bn; // black knight
     uint64_t bb; // black bishop
-    uint64_t bq;
-    uint64_t bp;
+    uint64_t bq; // black queen
+    uint64_t bp; // black pawn
 
-    int num_moves;
     int white_turn;
-    int wcastled;
-    int wk_moved;
-    int wr1_moved;
-    int wr2_moved;
-
-    int bcastled;
-    int bk_moved;
-    int br1_moved;
-    int br2_moved;
-
-    int last_capture_move;
-    int last_pawn_move;
+    int w_k_castle_allowed;
+    int w_q_castle_allowed;
+    int b_k_castle_allowed;
+    int b_q_castle_allowed;
+    int en_passant_target;
+    int half_moves;
+    int full_moves;
 } Position;
 
 
