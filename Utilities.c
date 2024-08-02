@@ -26,10 +26,10 @@ uint64_t reverse_bits(uint64_t n){
     return reversed;
 }
 
-Move generate_move_string(int white, uint64_t start, uint64_t end, int piece, int capture, int en_pass, int promo, int k_castle, int q_castle){
+Move generate_move_string(int white, int start, int end, int piece, int capture, int en_pass, int promo, int k_castle, int q_castle){
     Move move;
-    move = (((uint32_t)white) << 31) | ((start) << 30) | ((end) << 24) |
-            (((uint32_t)piece) << 18) | (((uint32_t)capture) << 15) | (((uint32_t)en_pass) << 14) |
+    move = (((uint32_t)white) << 31) | ((start) << 25) | ((end) << 19) |
+            (((uint32_t)piece) << 16) | (((uint32_t)capture) << 15) | (((uint32_t)en_pass) << 14) |
             (((uint32_t)promo) << 13) | (((uint32_t)k_castle) << 10) | (((uint32_t)q_castle) << 9);
     return move;
 }

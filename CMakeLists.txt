@@ -9,8 +9,8 @@ add_executable(amplexus main.c
         MoveGen.c
         DataStructures.c
         DataStructures.h
-        Tests.c
         Utilities.c
         Utilities.h
         DevUtilities.c
-        DevUtilities.h)
+        DevUtilities.h
+        test.c)

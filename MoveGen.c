@@ -3,7 +3,10 @@
 //
 #include "MoveGen.h"
 
-void generate_moves(Position pos, TreeNode root){
+#define AFILE (uint64_t) 0x8080808080808080
+#define HFILE (uint64_t) 0x0101010101010101
+
+void generate_moves(Position pos, TreeNode *root){
 
     uint64_t full_board = OCCUPIED_SQUARES(pos);
     // Pointers to current turn's player and opposition piece locations
@@ -28,7 +31,7 @@ void generate_moves(Position pos, TreeNode root){
 
     // Moves for rook, queen, and bishop
     uint64_t rqb = r | q | b;
-    int mask = (uint64_t) 1;
+    uint64_t mask = (uint64_t) 1;
     while(mask){
         if(mask & rqb){
             int piece_type;
@@ -51,16 +54,16 @@ void generate_moves(Position pos, TreeNode root){
                             moving_piece >>=8; // moves going down
                             break;
                     }
-                    if (!(moving_piece & full_board)) { // if new square is empty
+                    if (moving_piece && !(moving_piece & full_board)) { // if new square is empty
                         Move new_move;
-                        new_move = generate_move_string(pos.white_turn, og_piece, moving_piece, piece_type, 0, 0, 0, 0,
+                        new_move = generate_move_string(pos.white_turn, __builtin_ctzll(og_piece), __builtin_ctzll(moving_piece), piece_type, 0, 0, 0, 0,
                                                         0);
-                        add_move(&root, new_move);
+                        add_move(root, new_move);
                     } else if (moving_piece & op_pieces) {// capturing an enemy piece
                         Move new_move;
                         new_move = generate_move_string(pos.white_turn, og_piece, moving_piece, piece_type, 1, 0, 0, 0,
                                                         0);
-                        add_move(&root, new_move);
+                        add_move(root, new_move);
                     } else break; // Can't land on my own piece
                 }
             }
@@ -74,10 +77,4 @@ void generate_moves(Position pos, TreeNode root){
         mask <<= 1;
     }
 
-
-    // Bishop moves
-
-    // Queen moves
-
-    //
 }

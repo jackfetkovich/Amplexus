@@ -8,7 +8,7 @@
 
 uint64_t gen_bitboard(int squares[], int len);
 uint64_t reverse_bits(uint64_t n);
-Move generate_move_string(int, uint64_t, uint64_t, int, int, int, int , int, int);
+Move generate_move_string(int, int, int, int, int, int, int , int, int);
 
 
 

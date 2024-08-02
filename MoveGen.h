@@ -8,7 +8,7 @@
 #include "DataStructures.h"
 #include "Utilities.h"
 
-void generate_moves(Position pos, TreeNode root);
+void generate_moves(Position pos, TreeNode *root);
 
 
 

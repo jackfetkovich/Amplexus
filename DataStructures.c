@@ -18,7 +18,7 @@ void add_move(TreeNode *parent, Move move) {
     list_item->next = NULL;
     ListItem *p = parent->child_moves->head;
 
-    parent->num_children++;
+    (parent->num_children)++;
     if(p == NULL) {
         parent->child_moves->head = list_item;
         return;
