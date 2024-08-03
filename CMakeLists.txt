@@ -3,14 +3,14 @@ project(amplexus C)
 
 set(CMAKE_C_STANDARD 17)
 
-add_executable(amplexus main.c
-        AmplexusTypes.h
-        MoveGen.h
-        MoveGen.c
-        DataStructures.c
-        DataStructures.h
-        Utilities.c
-        Utilities.h
-        DevUtilities.c
-        DevUtilities.h
-        test.c)
+add_executable(amplexus src/main.c
+        src/AmplexusTypes.h
+        src/MoveGen.h
+        src/MoveGen.c
+        src/DataStructures.c
+        src/DataStructures.h
+        src/Utilities.c
+        src/Utilities.h
+        src/DevUtilities.c
+        src/DevUtilities.h
+        src/test.c)

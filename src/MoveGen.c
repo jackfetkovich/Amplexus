@@ -3,8 +3,8 @@
 //
 #include "MoveGen.h"
 
-#define AFILE (uint64_t) 0x8080808080808080
-#define HFILE (uint64_t) 0x0101010101010101
+#define HFILE (uint64_t) 0x8080808080808080
+#define AFILE (uint64_t) 0x0101010101010101
 
 void generate_moves(Position pos, TreeNode *root){
 
@@ -61,16 +61,51 @@ void generate_moves(Position pos, TreeNode *root){
                         add_move(root, new_move);
                     } else if (moving_piece & op_pieces) {// capturing an enemy piece
                         Move new_move;
-                        new_move = generate_move_string(pos.white_turn, og_piece, moving_piece, piece_type, 1, 0, 0, 0,
+                        new_move = generate_move_string(pos.white_turn, __builtin_ctzll(og_piece), __builtin_ctzll(moving_piece), piece_type, 1, 0, 0, 0,
                                                         0);
                         add_move(root, new_move);
+                        break;
                     } else break; // Can't land on my own piece
                 }
             }
 
             // Left
+            moving_piece = og_piece;
+            while((piece_type == QUEEN || piece_type == ROOK) && moving_piece){
+                moving_piece >>= 1;
+                moving_piece &= ~HFILE;
+                if (moving_piece && !(moving_piece & full_board)) { // if new square is empty
+                    Move new_move;
+                    new_move = generate_move_string(pos.white_turn, __builtin_ctzll(og_piece), __builtin_ctzll(moving_piece), piece_type, 0, 0, 0, 0,
+                                                    0);
+                    add_move(root, new_move);
+                } else if (moving_piece & op_pieces) {// capturing an enemy piece
+                    Move new_move;
+                    new_move = generate_move_string(pos.white_turn, __builtin_ctzll(og_piece), __builtin_ctzll(moving_piece), piece_type, 1, 0, 0, 0,
+                                                    0);
+                    add_move(root, new_move);
+                    break;
+                } else break; // Can't land on my own piece or on H file
+            }
 
             // Right
+            moving_piece = og_piece;
+            while((piece_type == QUEEN || piece_type == ROOK) && moving_piece){
+                moving_piece <<= 1;
+                moving_piece &= ~AFILE;
+                if (moving_piece && !(moving_piece & full_board)) { // if new square is empty
+                    Move new_move;
+                    new_move = generate_move_string(pos.white_turn, __builtin_ctzll(og_piece), __builtin_ctzll(moving_piece), piece_type, 0, 0, 0, 0,
+                                                    0);
+                    add_move(root, new_move);
+                } else if (moving_piece & op_pieces) {// capturing an enemy piece
+                    Move new_move;
+                    new_move = generate_move_string(pos.white_turn, __builtin_ctzll(og_piece), __builtin_ctzll(moving_piece), piece_type, 1, 0, 0, 0,
+                                                    0);
+                    add_move(root, new_move);
+                    break;
+                } else break; // Can't land on my own piece or on H file
+            }
 
         }
 

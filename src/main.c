@@ -83,7 +83,7 @@ int main() {
 
 // Testing basic move generation
 
-    char fen_str[] = "R7/8/8/8/8/8/8/8 w - - 0 1";
+    char fen_str[] = "8/8/3B4/2BRB3/3B4/8/8/8 w - - 0 1";
     Position *pos = position_from_fen(fen_str);
 
     Tree tree;
